@@ -1,0 +1,37 @@
+---
+import { contentfulClient } from "../../lib/contentful";
+import type { EntryFieldTypes } from "contentful";
+import {getLocale} from '../../scripts/getLocale'
+
+interface CVTitles {
+  contentTypeId: "cvTitle",
+  fields: {
+    title: EntryFieldTypes.Text
+    tagline: EntryFieldTypes.Text,
+  }
+}
+
+const entries = await contentfulClient.getEntries<CVTitles>({
+  content_type: "cvTitle",
+  locale: getLocale('es')
+});
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body>
+		<h1>Astro</h1>
+		  {entries.items.map((item) => (
+				<section>
+				<h2>{item.fields.title}</h2>
+				<article>{item.fields.tagline}</article>
+				</section>
+			))}
+	</body>
+</html>
