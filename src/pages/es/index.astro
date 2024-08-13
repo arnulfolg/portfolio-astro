@@ -1,4 +1,5 @@
 ---
+import Base from "../../layouts/Base.astro";
 import { contentfulClient } from "../../lib/contentful";
 import type { EntryFieldTypes } from "contentful";
 import {getLocale} from '../../scripts/getLocale'
@@ -18,22 +19,17 @@ const entries = await contentfulClient.getEntries<CVTitles>({
 });
 ---
 
-<html lang="es">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-		  {entries.items.map((item) => (
-				<section>
-				<h2>{item.fields.title}</h2>
-				<article>{item.fields.tagline}</article>
-				</section>
-			))}
-			<LocaleButton language="en" />
-	</body>
-</html>
+<Base>
+	<h1 class="text-blue-700 group-hover:text-gray">Astro</h1>
+		{entries.items.map((item) => (
+			<section>
+			<h2>{item.fields.title}</h2>
+			<article>
+				<p>
+					{item.fields.tagline}
+				</p>
+			</article>
+			</section>
+		))}
+		<LocaleButton language="en" />
+</Base>
