@@ -1,0 +1,18 @@
+---
+const { language } = Astro.props;
+---
+
+<button id="languageButton">
+	{ language.toUpperCase() }
+</button>
+
+<script define:vars={{language}}>
+	// Find all buttons with the `alert` class on the page.
+	const button = document.querySelector('button#languageButton');
+
+	// Handle clicks on each button.
+	button?.addEventListener('click', () => {
+		const changelanguage = `/${language}/`
+		location.href = changelanguage
+	});
+</script>

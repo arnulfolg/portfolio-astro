@@ -2,6 +2,7 @@
 import { contentfulClient } from "../../lib/contentful";
 import type { EntryFieldTypes } from "contentful";
 import {getLocale} from '../../scripts/getLocale'
+import LocaleButton from '../../components/LocaleButton.astro'
 
 interface CVTitles {
   contentTypeId: "cvTitle",
@@ -17,7 +18,7 @@ const entries = await contentfulClient.getEntries<CVTitles>({
 });
 ---
 
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -33,5 +34,6 @@ const entries = await contentfulClient.getEntries<CVTitles>({
 				<article>{item.fields.tagline}</article>
 				</section>
 			))}
+			<LocaleButton language="en" />
 	</body>
 </html>
