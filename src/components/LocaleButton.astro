@@ -1,9 +1,10 @@
 ---
-const { language } = Astro.props;
+const { language, text } = Astro.props;
 ---
 
 <button id="languageButton" class="toggleButton dark:outline-white">
 	<i class="fa-solid fa-language"></i>
+	<span>{text}</span>
 </button>
 
 <script define:vars={{language}}>

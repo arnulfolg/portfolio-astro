@@ -14,7 +14,18 @@ interface CVTitles {
     tagline: EntryFieldTypes.Text,
   }
 }
-console.log(pathname.split('/')[1])
+
+interface CVLanguage {
+  contentTypeId: "headings",
+  fields: {
+    heading: EntryFieldTypes.Text
+  }
+}
+
+const languageText = await contentfulClient.getEntry<CVLanguage>('ryPXmqgWyGKZKVNpevKXS', {
+	locale: getLocale(pathname.split('/')[1])
+});
+
 const entries = await contentfulClient.getEntries<CVTitles>({
   content_type: "cvTitle",
   locale: getLocale(pathname.split('/')[1])
@@ -35,7 +46,7 @@ const entries = await contentfulClient.getEntries<CVTitles>({
 				<DarkModeButton />
 			</li> -->
 			<li>
-				<LocaleButton language={pathname.split('/')[1] === "en" ? "es" : "en"} />
+				<LocaleButton language={pathname.split('/')[1] === "en" ? "es" : "en"} text={languageText.fields.heading} />
 			</li>
 		</ul>
 	))}

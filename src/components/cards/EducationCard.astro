@@ -1,0 +1,20 @@
+---
+const {image, title, date, subtitle} = Astro.props
+
+---
+
+<section class="education_section">
+	{ image? <img
+		src={image + "?fl=progressive&w=200"}
+		alt=""
+		loading="lazy"
+	/> : ''}
+	
+	<section>
+		<h3>
+			{title}&nbsp;
+			<time>({date})</time>
+		</h3>
+		<p>{subtitle}</p>
+	</section>
+</section>

@@ -36,6 +36,10 @@ const portfolio = await contentfulClient.getEntry<CVPortfolio>('4KfXOh5UAb8vCN9Y
 	locale: getLocale(pathname.split('/')[1])
 });
 
+const portfolioLink = await contentfulClient.getEntry<CVPortfolio>('4672gexNeDtvV2QiQYGBQT', {
+	locale: getLocale(pathname.split('/')[1])
+});
+
 const entries = await contentfulClient.getEntries<CVPortfolioCollection>({
   content_type: "portfolio",
   locale: getLocale(pathname.split('/')[1]),
@@ -60,7 +64,7 @@ const entries = await contentfulClient.getEntries<CVPortfolioCollection>({
 			);
 		})}
 	</section>
-	<!-- <footer>
-		<Link to="/portfolio">{link.heading}</Link>
-	</footer> -->
+	<footer>
+		<a href="/portfolio">{portfolioLink.fields.heading}</a>
+	</footer>
 </section>

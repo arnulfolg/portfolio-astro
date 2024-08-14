@@ -16,12 +16,14 @@ import Footer from '../components/Footer.astro'
 		<script src="https://kit.fontawesome.com/bd9abda6a7.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
-		<main class="App">
+		<section class="App">
 			<Header />
 
-			<slot />
+			<main class="main">
+				<slot />
+			</main>
 			
 			<Footer />
-		</main>
+		</section>
 	</body>
 </html>
