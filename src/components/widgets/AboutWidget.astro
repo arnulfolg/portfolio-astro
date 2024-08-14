@@ -1,0 +1,41 @@
+---
+import type { EntryFieldTypes } from 'contentful';
+import { contentfulClient } from '../../lib/contentful';
+import { getLocale } from '../../scripts/getLocale';
+
+const { pathname } = Astro.url
+
+interface CVAbout {
+  contentTypeId: "headings",
+  fields: {
+    heading: EntryFieldTypes.Text
+  }
+}
+
+interface CVAboutCollection {
+  contentTypeId: "aboutMe",
+  fields: {
+	title: EntryFieldTypes.Text,
+	description: EntryFieldTypes.Text
+  }
+}
+
+const about = await contentfulClient.getEntry<CVAbout>('5lkl1wDaWl4pg5vAAKFAnt', {
+	locale: getLocale(pathname.split('/')[1])
+});
+
+const entries = await contentfulClient.getEntries<CVAboutCollection>({
+  content_type: "aboutMe",
+  locale: getLocale(pathname.split('/')[1])
+});
+
+
+
+---
+
+<section class="section">
+	<h2 class="animate-titles">{about.fields.heading}</h2>
+	{entries.items.map((item) => (
+		<p>{item.fields.description}</p>
+	))}
+</section>

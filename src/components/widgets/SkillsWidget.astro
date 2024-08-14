@@ -1,0 +1,51 @@
+---
+import type { EntryFieldTypes } from 'contentful';
+import { contentfulClient } from '../../lib/contentful';
+import { getLocale } from '../../scripts/getLocale';
+
+const { pathname } = Astro.url
+
+
+interface CVSkills {
+  contentTypeId: "headings",
+  fields: {
+    heading: EntryFieldTypes.Text
+  }
+}
+
+interface CVSkillsCollection {
+  contentTypeId: "skills",
+  fields: {
+	title: EntryFieldTypes.Text,
+	skillList: Array<EntryFieldTypes.Text>
+  }
+}
+
+const skills = await contentfulClient.getEntry<CVSkills>('69tmMvtPx8twaEgeU3Vjf4', {
+	locale: getLocale(pathname.split('/')[1])
+});
+
+const entries = await contentfulClient.getEntries<CVSkillsCollection>({
+  content_type: "skills",
+  locale: getLocale(pathname.split('/')[1])
+});
+
+---
+
+<section class="section">
+	<h2 class="">{skills.fields.heading}</h2>
+	<section class="section_cols-3">
+		{entries.items.map((skill) => {
+			return (
+				<section>
+					<h3>{skill.fields.title}</h3>
+					<ul class="list">
+						{skill.fields.skillList?.map((skillItem: string) => {
+							return <li>{skillItem}</li>;
+						})}
+					</ul>
+				</section>
+			);
+		})}
+	</section>
+</section>

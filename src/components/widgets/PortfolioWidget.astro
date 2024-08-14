@@ -1,0 +1,66 @@
+---
+import '../../styles/widgets/Portfolio.css'
+import type { EntryFieldTypes } from 'contentful';
+import { contentfulClient } from '../../lib/contentful';
+import { getLocale } from '../../scripts/getLocale';
+import PortfolioCard from '../cards/PortfolioCard.astro';
+
+const { pathname } = Astro.url
+
+
+interface CVPortfolio {
+  contentTypeId: "headings",
+  fields: {
+    heading: EntryFieldTypes.Text
+  }
+}
+
+interface CVPortfolioCollection {
+  contentTypeId: "portfolio",
+	sys: {
+		id: EntryFieldTypes.Text
+	},
+  fields: {
+	project_name: EntryFieldTypes.Text,
+	tumbnail: {
+		fields: {
+			file: {
+				url: EntryFieldTypes.Text
+			}
+		}
+	}
+  }
+}
+
+const portfolio = await contentfulClient.getEntry<CVPortfolio>('4KfXOh5UAb8vCN9YiQvaI7', {
+	locale: getLocale(pathname.split('/')[1])
+});
+
+const entries = await contentfulClient.getEntries<CVPortfolioCollection>({
+  content_type: "portfolio",
+  locale: getLocale(pathname.split('/')[1]),
+  limit: 2
+});
+
+---
+
+<section class="section">
+	<header>
+		<h2 class="animate-titles">{portfolio.fields.heading}</h2>
+	</header>
+	<section class="section_cols-2">
+		{entries.items.map((project) => {
+			return (
+				<PortfolioCard
+					link={project.sys.id}
+					image={project.fields.tumbnail.fields.file.url}
+					project={project.fields.project_name}
+
+				/>
+			);
+		})}
+	</section>
+	<!-- <footer>
+		<Link to="/portfolio">{link.heading}</Link>
+	</footer> -->
+</section>
