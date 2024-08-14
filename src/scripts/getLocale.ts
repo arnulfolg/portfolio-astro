@@ -1,7 +1,7 @@
-const Languages = {
+const Languages = Object.freeze({
 	ES: 'es-419',
   	EN: 'en-US',
-}
+})
 
 export const getLocale = (locale: string) => {
 	const language = locale.trim().toUpperCase()

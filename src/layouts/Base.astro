@@ -1,6 +1,8 @@
 ---
 import './../styles/base.css'
 import './../styles/App.css'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
 ---
 
 <html lang="en">
@@ -10,8 +12,16 @@ import './../styles/App.css'
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro</title>
+
+		<script src="https://kit.fontawesome.com/bd9abda6a7.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
-		<slot />
+		<main class="App">
+			<Header />
+
+			<slot />
+			
+			<Footer />
+		</main>
 	</body>
 </html>

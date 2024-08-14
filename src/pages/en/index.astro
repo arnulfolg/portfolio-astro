@@ -1,35 +1,9 @@
 ---
 import Base from "../../layouts/Base.astro";
-import { contentfulClient } from "../../lib/contentful";
-import type { EntryFieldTypes } from "contentful";
-import { getLocale } from "../../scripts/getLocale";
-import LocaleButton from "../../components/LocaleButton.astro";
 
-interface CVTitles {
-  contentTypeId: "cvTitle",
-  fields: {
-    title: EntryFieldTypes.Text
-    tagline: EntryFieldTypes.Text,
-  }
-}
-
-const entries = await contentfulClient.getEntries<CVTitles>({
-  content_type: "cvTitle",
-  locale: getLocale('en')
-});
 ---
 
 <Base>
 	<h1 class="text-red-700 group-hover:text-gray">Astro</h1>
-		{entries.items.map((item) => (
-			<section>
-			<h2>{item.fields.title}</h2>
-			<article>
-				<p>
-					{item.fields.tagline}
-				</p>
-			</article>
-			</section>
-		))}
-		<LocaleButton language="es" />
+
 </Base>

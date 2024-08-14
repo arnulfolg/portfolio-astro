@@ -1,0 +1,43 @@
+---
+import './../styles/components/Header.css'
+import type { EntryFieldTypes } from "contentful";
+import { contentfulClient } from "../lib/contentful";
+import LocaleButton from "./LocaleButton.astro";
+import { getLocale } from "../scripts/getLocale";
+
+const { pathname } = Astro.url
+
+interface CVTitles {
+  contentTypeId: "cvTitle",
+  fields: {
+    title: EntryFieldTypes.Text
+    tagline: EntryFieldTypes.Text,
+  }
+}
+console.log(pathname.split('/')[1])
+const entries = await contentfulClient.getEntries<CVTitles>({
+  content_type: "cvTitle",
+  locale: getLocale(pathname.split('/')[1])
+});
+
+---
+
+<header class="header">
+	{entries.items.map((item) => (
+		<section class="titles">
+			<!-- <Link to="/"> -->
+				<h1>{item.fields.title}</h1>
+			<!-- </Link> -->
+			<p class="subtitle">{item.fields.tagline}</p>
+		</section>
+		<ul class="controls">
+			<!-- <li>
+				<DarkModeButton />
+			</li> -->
+			<li>
+				<LocaleButton language={pathname.split('/')[1] === "en" ? "es" : "en"} />
+			</li>
+		</ul>
+	))}
+
+</header>
