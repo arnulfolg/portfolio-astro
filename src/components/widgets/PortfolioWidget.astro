@@ -1,53 +1,20 @@
 ---
 import '../../styles/widgets/Portfolio.css'
-import type { EntryFieldTypes } from 'contentful';
-import { contentfulClient } from '../../lib/contentful';
 import { getLocale } from '../../scripts/getLocale';
 import PortfolioCard from '../cards/PortfolioCard.astro';
+import { getContentHeader, getPortfolio } from '../../scripts/getContent';
 
 const { pathname } = Astro.url
 
+const language: string = pathname.split('/')[1];
+const locale: string = getLocale(language);
 
-interface CVPortfolio {
-  contentTypeId: "headings",
-  fields: {
-    heading: EntryFieldTypes.Text
-  }
-}
+const portfolio = await getContentHeader('4KfXOh5UAb8vCN9YiQvaI7', locale)
+const portfolioLink = await getContentHeader('4672gexNeDtvV2QiQYGBQT', locale)
 
-interface CVPortfolioCollection {
-  contentTypeId: "portfolio",
-	sys: {
-		id: EntryFieldTypes.Text
-	},
-  fields: {
-	project_name: EntryFieldTypes.Text,
-	tumbnail: {
-		fields: {
-			file: {
-				url: EntryFieldTypes.Text
-			}
-		}
-	}
-  }
-}
-
-const portfolio = await contentfulClient.getEntry<CVPortfolio>('4KfXOh5UAb8vCN9YiQvaI7', {
-	locale: getLocale(pathname.split('/')[1])
-});
-
-const portfolioLink = await contentfulClient.getEntry<CVPortfolio>('4672gexNeDtvV2QiQYGBQT', {
-	locale: getLocale(pathname.split('/')[1])
-});
-
-const entries = await contentfulClient.getEntries<CVPortfolioCollection>({
-  content_type: "portfolio",
-  locale: getLocale(pathname.split('/')[1]),
-  limit: 2
-});
+const entries = await getPortfolio(locale)
 
 ---
-
 <section class="section">
 	<header>
 		<h2 class="animate-titles">{portfolio.fields.heading}</h2>

@@ -1,44 +1,20 @@
 ---
 import '../../styles/widgets/Education.css'
-import type { EntryFieldTypes } from 'contentful';
-import { contentfulClient } from '../../lib/contentful';
 import { getLocale } from '../../scripts/getLocale';
+import { getContentHeader, getEducation } from '../../scripts/getContent';
 
 const { pathname } = Astro.url
 
 
-interface CVEducation {
-  contentTypeId: "headings",
-  fields: {
-    heading: EntryFieldTypes.Text
-  }
-}
 
-interface CVEducationCollection {
-  contentTypeId: "education",
-	sys: {
-		id: EntryFieldTypes.Text
-	},
-	fields: {
-		title: EntryFieldTypes.Text
-	}
-}
+const language: string = pathname.split('/')[1];
+const locale: string = getLocale(language);
 
-const education = await contentfulClient.getEntry<CVEducation>('BJft3IxP7iqujQ53J1aYl', {
-	locale: getLocale(pathname.split('/')[1])
-});
+const education = await getContentHeader('BJft3IxP7iqujQ53J1aYl', locale)
+const educationLink = await getContentHeader('4bfcgFHvZ8MdeIywpTXR5f', locale)
 
-const educationLink = await contentfulClient.getEntry<CVEducation>('4bfcgFHvZ8MdeIywpTXR5f', {
-	locale: getLocale(pathname.split('/')[1])
-});
-
-const entries = await contentfulClient.getEntries<CVEducationCollection>({
-  content_type: "education",
-  locale: getLocale(pathname.split('/')[1]),
-  limit: 3
-});
+const entries = await getEducation(locale)
 ---
-
 <section class="section">
 	<header>
 		<h2 class="animate-titles">{education.fields.heading}</h2>

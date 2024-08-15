@@ -1,33 +1,23 @@
 ---
 import '../../styles/widgets/Resume.css'
-import type { EntryFieldTypes } from 'contentful';
-import { contentfulClient } from '../../lib/contentful';
 import { getLocale } from '../../scripts/getLocale';
+import { getFile } from '../../scripts/getContent';
 
 const { pathname } = Astro.url
 
-interface CVFile {
-  	contentTypeId: "Asset",
-	fields: {
-		title: EntryFieldTypes.Text,
-		file: {
-			filename: EntryFieldTypes.Text,
-			url: EntryFieldTypes.Text
-		}
-	}
-}
 
-const downloadfile = await contentfulClient.getAsset('4mH92P2EMhcmAiRzZaqJsG', {
-	locale: getLocale(pathname.split('/')[1])
-});
+const language: string = pathname.split('/')[1];
+const locale: string = getLocale(language);
+
+const downloadfile = await getFile('4mH92P2EMhcmAiRzZaqJsG', locale)
 
 ---
 
 <a
 	class="download_resume"
+	href={downloadfile.fields.file.url}
 	target="_blank"
 	rel="noopener noreferrer"
-	href={downloadfile.fields.file.url}
 >
 	<i class="fa-solid fa-file-pdf"></i>
 	<p>{downloadfile.fields.title}</p>

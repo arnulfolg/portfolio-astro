@@ -7,7 +7,7 @@ const { language, text } = Astro.props;
 	<span>{text}</span>
 </button>
 
-<script define:vars={{language}}>
+<script is:inline define:vars={{language}}>
 	const button = document.querySelector('button#languageButton');
 
 	button?.addEventListener('click', () => {

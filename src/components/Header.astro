@@ -1,35 +1,19 @@
 ---
 import './../styles/components/Header.css'
-import type { EntryFieldTypes } from "contentful";
-import { contentfulClient } from "../lib/contentful";
 import LocaleButton from "./LocaleButton.astro";
 import { getLocale } from "../scripts/getLocale";
+import { getContentHeader, getContentTitles } from '../scripts/getContent';
+import type { CVHeading } from '../scripts/Interfaces/HeaderInterfaces';
+import type { CVTitles } from '../scripts/Interfaces/TitlesInterfaces';
 
 const { pathname } = Astro.url
 
-interface CVTitles {
-  contentTypeId: "cvTitle",
-  fields: {
-    title: EntryFieldTypes.Text
-    tagline: EntryFieldTypes.Text,
-  }
-}
+const language: string = pathname.split('/')[1];
+const locale: string = getLocale(language);
 
-interface CVLanguage {
-  contentTypeId: "headings",
-  fields: {
-    heading: EntryFieldTypes.Text
-  }
-}
+const languageText: CVHeading = await getContentHeader('ryPXmqgWyGKZKVNpevKXS', locale)
 
-const languageText = await contentfulClient.getEntry<CVLanguage>('ryPXmqgWyGKZKVNpevKXS', {
-	locale: getLocale(pathname.split('/')[1])
-});
-
-const entries = await contentfulClient.getEntries<CVTitles>({
-  content_type: "cvTitle",
-  locale: getLocale(pathname.split('/')[1])
-});
+const entries: CVTitles = await getContentTitles(locale)
 
 ---
 
@@ -46,7 +30,7 @@ const entries = await contentfulClient.getEntries<CVTitles>({
 				<DarkModeButton />
 			</li> -->
 			<li>
-				<LocaleButton language={pathname.split('/')[1] === "en" ? "es" : "en"} text={languageText.fields.heading} />
+				<LocaleButton language={language === "en" ? "es" : "en"} text={languageText.fields.heading} />
 			</li>
 		</ul>
 	))}

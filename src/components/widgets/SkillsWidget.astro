@@ -1,36 +1,18 @@
 ---
-import type { EntryFieldTypes } from 'contentful';
-import { contentfulClient } from '../../lib/contentful';
 import { getLocale } from '../../scripts/getLocale';
+import { getContentHeader, getSkills } from '../../scripts/getContent';
+import type { CVHeading } from '../../scripts/Interfaces/HeaderInterfaces';
+import type { CVSkills } from '../../scripts/Interfaces/SkillsInterface';
 
 const { pathname } = Astro.url
 
-interface CVSkills {
-  contentTypeId: "headings",
-  fields: {
-    heading: EntryFieldTypes.Text
-  }
-}
+const language: string = pathname.split('/')[1];
+const locale: string = getLocale(language);
 
-interface CVSkillsCollection {
-  contentTypeId: "skills",
-  fields: {
-	title: EntryFieldTypes.Text,
-	skillList: Array<EntryFieldTypes.Text>
-  }
-}
-
-const skills = await contentfulClient.getEntry<CVSkills>('69tmMvtPx8twaEgeU3Vjf4', {
-	locale: getLocale(pathname.split('/')[1])
-});
-
-const entries = await contentfulClient.getEntries<CVSkillsCollection>({
-  content_type: "skills",
-  locale: getLocale(pathname.split('/')[1])
-});
+const skills: CVHeading = await getContentHeader('69tmMvtPx8twaEgeU3Vjf4', locale)
+const entries: CVSkills = await getSkills(locale)
 
 ---
-
 <section class="section">
 	<h2 class="">{skills.fields.heading}</h2>
 	<section class="section_cols-3">
