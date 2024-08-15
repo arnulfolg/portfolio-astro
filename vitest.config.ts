@@ -5,5 +5,8 @@ export default getViteConfig({
 	test: {
 		// Vitest configuration options
 		globals: true,
+		coverage: {
+			provider: 'v8'
+		}
 	},
 });
