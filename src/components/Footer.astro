@@ -1,24 +1,16 @@
 ---
-import type { EntryFieldTypes } from 'contentful';
 import './../styles/components/Footer.css'
-import { contentfulClient } from '../lib/contentful';
 import { getLocale } from '../scripts/getLocale';
+import type { CVHeading } from '../scripts/Interfaces/HeaderInterfaces';
+import { getContentHeader } from '../scripts/getContent';
 
 const { pathname } = Astro.url
 
-interface CVHeadings {
-  contentTypeId: "headings",
-  fields: {
-    heading: EntryFieldTypes.Text
-  }
-}
+const language: string = pathname.split('/')[1];
+const locale: string = getLocale(language);
 
-const letstalk = await contentfulClient.getEntry<CVHeadings>('2JKBOifyd5Ab8br6vKYH6m', {
-	locale: getLocale(pathname.split('/')[1])
-});
-const copyright = await contentfulClient.getEntry<CVHeadings>('6LUAZri2OCvJyO0scmN133', {
-	locale: getLocale(pathname.split('/')[1])
-});
+const copyright: CVHeading = await getContentHeader('6LUAZri2OCvJyO0scmN133', locale)
+const letstalk: CVHeading = await getContentHeader('2JKBOifyd5Ab8br6vKYH6m', locale)
 
 ---
 

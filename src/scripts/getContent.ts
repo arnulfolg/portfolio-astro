@@ -1,4 +1,5 @@
 import { contentfulClient } from "../lib/contentful";
+import type { ContentfulAboutCollection, CVAbout } from "./Interfaces/AboutInterface";
 import type { ContentfulEducationCollection, CVEducation } from "./Interfaces/EducationInterface";
 import type { CVFile } from "./Interfaces/FileInterface";
 import type { ContentfulHeaders, CVHeading } from "./Interfaces/HeaderInterfaces";
@@ -57,3 +58,13 @@ export const getPortfolio = async (locale: string) => {
 
 	return entries as unknown as CVPortfolio
 }
+
+export const getAbout = async (locale: string) => {
+	const entries = await contentfulClient.getEntries<ContentfulAboutCollection>({
+		content_type: "aboutMe",
+		locale: locale
+	});
+
+	return entries as unknown as CVAbout
+}
+
