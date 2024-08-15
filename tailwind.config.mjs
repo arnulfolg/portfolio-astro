@@ -4,9 +4,9 @@ export default {
 	theme: {
 		extend: {},
 		fontFamily: {
-			ibm: ["IBM Plex Sans", "Helvetica", "sans-serif"],
-			rubik: ["Rubik", "serif"],
+			ibm: ['IBM Plex Sans', 'Helvetica', 'sans-serif'],
+			rubik: ['Rubik', 'serif'],
 		},
 	},
 	plugins: [],
-}
+};

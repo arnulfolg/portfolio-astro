@@ -1,15 +1,15 @@
 const Languages = Object.freeze({
 	ES: 'es-419',
-  	EN: 'en-US',
-})
+	EN: 'en-US',
+});
 
 export const getLocale = (locale: string) => {
-	const language = locale.trim().toUpperCase()
-	
-	if(Object.keys(Languages).includes(language)) {
+	const language = locale.trim().toUpperCase();
+
+	if (Object.keys(Languages).includes(language)) {
 		//@ts-ignore
-		return Languages[language]
+		return Languages[language];
 	} else {
-		return Languages.EN
+		return Languages.EN;
 	}
-}
+};

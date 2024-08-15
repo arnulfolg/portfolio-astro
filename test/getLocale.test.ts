@@ -1,6 +1,5 @@
 import { expect, test } from 'vitest';
 import { getLocale } from '../src/scripts/getLocale';
- 
 
 test('getLocale es should return spanish code', () => {
 	const result = getLocale('es');

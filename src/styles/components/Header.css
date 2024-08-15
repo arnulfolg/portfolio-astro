@@ -21,8 +21,8 @@
 			content-center;
 
 	grid-template-areas:
-		"controls"
-		"titles";
+		'controls'
+		'titles';
 
 	animation: header-shrink linear forwards;
 	animation-timeline: scroll();
@@ -57,7 +57,7 @@
 	@apply min-h-0
 			grid-rows-1
 			grid-cols-2;
-	grid-template-areas: "titles controls";
+	grid-template-areas: 'titles controls';
 	height: 5rem;
 
 	animation: none;
@@ -166,7 +166,7 @@
 	@keyframes header-shrink {
 		to {
 			grid-template-columns: repeat(2, 1fr);
-			grid-template-areas: "titles controls";
+			grid-template-areas: 'titles controls';
 			height: 5rem;
 		}
 	}
