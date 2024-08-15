@@ -1,13 +1,11 @@
 ---
 import '../../styles/widgets/Resume.css'
-import { getLocale } from '../../scripts/getLocale';
 import { getFile } from '../../scripts/getContent';
+import { getLocaleAndLang } from '../../scripts/getLocaleAndLang';
 
 const { pathname } = Astro.url
 
-
-const language: string = pathname.split('/')[1];
-const locale: string = getLocale(language);
+const [, locale] = getLocaleAndLang(pathname)
 
 const downloadfile = await getFile('4mH92P2EMhcmAiRzZaqJsG', locale)
 

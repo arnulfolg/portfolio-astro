@@ -1,13 +1,12 @@
 ---
 import '../../styles/widgets/Portfolio.css'
-import { getLocale } from '../../scripts/getLocale';
 import PortfolioCard from '../cards/PortfolioCard.astro';
 import { getContentHeader, getPortfolio } from '../../scripts/getContent';
+import { getLocaleAndLang } from '../../scripts/getLocaleAndLang';
 
 const { pathname } = Astro.url
 
-const language: string = pathname.split('/')[1];
-const locale: string = getLocale(language);
+const [, locale] = getLocaleAndLang(pathname)
 
 const portfolio = await getContentHeader('4KfXOh5UAb8vCN9YiQvaI7', locale)
 const portfolioLink = await getContentHeader('4672gexNeDtvV2QiQYGBQT', locale)

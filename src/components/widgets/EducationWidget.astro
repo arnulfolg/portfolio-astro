@@ -1,14 +1,11 @@
 ---
 import '../../styles/widgets/Education.css'
-import { getLocale } from '../../scripts/getLocale';
 import { getContentHeader, getEducation } from '../../scripts/getContent';
+import { getLocaleAndLang } from '../../scripts/getLocaleAndLang';
 
 const { pathname } = Astro.url
 
-
-
-const language: string = pathname.split('/')[1];
-const locale: string = getLocale(language);
+const [, locale] = getLocaleAndLang(pathname)
 
 const education = await getContentHeader('BJft3IxP7iqujQ53J1aYl', locale)
 const educationLink = await getContentHeader('4bfcgFHvZ8MdeIywpTXR5f', locale)

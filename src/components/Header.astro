@@ -1,15 +1,14 @@
 ---
 import './../styles/components/Header.css'
 import LocaleButton from "./LocaleButton.astro";
-import { getLocale } from "../scripts/getLocale";
 import { getContentHeader, getContentTitles } from '../scripts/getContent';
 import type { CVHeading } from '../scripts/Interfaces/HeaderInterfaces';
 import type { CVTitles } from '../scripts/Interfaces/TitlesInterfaces';
+import { getLocaleAndLang } from '../scripts/getLocaleAndLang';
 
 const { pathname } = Astro.url
 
-const language: string = pathname.split('/')[1];
-const locale: string = getLocale(language);
+const [language, locale] = getLocaleAndLang(pathname)
 
 const languageText: CVHeading = await getContentHeader('ryPXmqgWyGKZKVNpevKXS', locale)
 

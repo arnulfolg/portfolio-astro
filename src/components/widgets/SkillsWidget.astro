@@ -1,13 +1,12 @@
 ---
-import { getLocale } from '../../scripts/getLocale';
 import { getContentHeader, getSkills } from '../../scripts/getContent';
 import type { CVHeading } from '../../scripts/Interfaces/HeaderInterfaces';
 import type { CVSkills } from '../../scripts/Interfaces/SkillsInterface';
+import { getLocaleAndLang } from '../../scripts/getLocaleAndLang';
 
 const { pathname } = Astro.url
 
-const language: string = pathname.split('/')[1];
-const locale: string = getLocale(language);
+const [, locale] = getLocaleAndLang(pathname)
 
 const skills: CVHeading = await getContentHeader('69tmMvtPx8twaEgeU3Vjf4', locale)
 const entries: CVSkills = await getSkills(locale)

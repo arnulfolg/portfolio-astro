@@ -1,13 +1,12 @@
 ---
 import './../styles/components/Footer.css'
-import { getLocale } from '../scripts/getLocale';
 import type { CVHeading } from '../scripts/Interfaces/HeaderInterfaces';
 import { getContentHeader } from '../scripts/getContent';
+import { getLocaleAndLang } from '../scripts/getLocaleAndLang';
 
 const { pathname } = Astro.url
 
-const language: string = pathname.split('/')[1];
-const locale: string = getLocale(language);
+const [, locale] = getLocaleAndLang(pathname)
 
 const copyright: CVHeading = await getContentHeader('6LUAZri2OCvJyO0scmN133', locale)
 const letstalk: CVHeading = await getContentHeader('2JKBOifyd5Ab8br6vKYH6m', locale)
