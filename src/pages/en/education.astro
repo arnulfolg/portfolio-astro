@@ -1,0 +1,63 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCertificationCollection, getContentHeader, getDegrees } from '../../scripts/getContent';
+import type { CVHeading } from '../../scripts/Interfaces/HeaderInterfaces';
+import { getLocaleAndLang } from '../../scripts/getLocaleAndLang';
+import EducationCard from '../../components/cards/EducationCard.astro';
+
+const { pathname } = Astro.url
+
+
+const [, locale] = getLocaleAndLang(pathname)
+
+const pageTitle: CVHeading = await getContentHeader('BJft3IxP7iqujQ53J1aYl', locale)
+const education: CVHeading = await getContentHeader('5Xlj25BEabB30fdd42rYts', locale)
+const certification: CVHeading = await getContentHeader('4ZOClGf1qddWC2MZWH5d2g', locale)
+
+const degrees = await getDegrees(locale)
+const certifications = await getCertificationCollection(locale)
+		
+---
+<Base>
+	<header>
+		<h1>{pageTitle.fields.heading}</h1>
+	</header>
+	<section class="section section_left">
+		<header>
+			<h2 class="animate-titles">
+				{education.fields.heading}
+			</h2>
+		</header>
+		{degrees.items.map(
+			(degree) => {
+				return (
+					<EducationCard
+						title={degree.fields.title}
+						subtitle={degree.fields.subtitle}
+						date={degree.fields.date}
+						image={degree.fields.image.fields.file.url}
+					/>
+				);
+			}
+		)}
+	</section>
+	<section class="section section_left">
+		<header>
+			<h2 class="animate-titles">
+				{certification.fields.heading}
+			</h2>
+		</header>
+		{certifications.items.map(
+			(cert) => {
+				return (
+					<EducationCard
+						title={cert.fields.title}
+						subtitle={cert.fields.subtitle}
+						date={cert.fields.date}
+						image={cert.fields.image.fields.file.url}
+					/>
+				);
+			}
+		)}
+	</section>
+</Base>

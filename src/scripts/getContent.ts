@@ -1,8 +1,10 @@
+import type { EntryFieldTypes } from 'contentful';
 import { contentfulClient } from '../lib/contentful';
 import type {
 	ContentfulAboutCollection,
 	CVAbout,
 } from './Interfaces/AboutInterface';
+import type { ContentfulCertificationCollection, CVCertificationCollection } from './Interfaces/CertificationInterface';
 import type {
 	ContentfulEducationCollection,
 	CVEducation,
@@ -21,6 +23,7 @@ import type {
 	CVSkillsCollection,
 } from './Interfaces/SkillsInterface';
 import type { ContentfulTitles, CVTitles } from './Interfaces/TitlesInterfaces';
+import type { ContentfulDegreeCollection, CVDegree } from './Interfaces/DegreeInterface';
 
 export const getContentHeader = async (id: string, locale: string) => {
 	const contentfulEntry = await contentfulClient.getEntry<ContentfulHeaders>(
@@ -87,4 +90,24 @@ export const getAbout = async (locale: string) => {
 		});
 
 	return entries as unknown as CVAbout;
+};
+
+export const getCertificationCollection = async (locale: string) => {
+	const entries =
+		await contentfulClient.getEntries<ContentfulCertificationCollection>({
+			content_type: 'education',
+			locale: locale,
+		});
+
+	return entries as unknown as CVCertificationCollection;
+};
+
+export const getDegrees = async (locale: string) => {
+	const entries =
+		await contentfulClient.getEntries<ContentfulDegreeCollection>({
+			content_type: 'degree',
+			locale: locale,
+		});
+
+	return entries as unknown as CVDegree;
 };
