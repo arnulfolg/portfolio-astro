@@ -1,12 +1,6 @@
-import type { EntryFieldTypes } from "contentful";
-
 export interface ContentfulCertificationCollection {
 	contentTypeId: 'education';
 	fields: {
-		image: EntryFieldTypes.Text;
-		title: EntryFieldTypes.Text;
-		subtitle: EntryFieldTypes.Text;
-		date: EntryFieldTypes.Text;
 	};
 }
 

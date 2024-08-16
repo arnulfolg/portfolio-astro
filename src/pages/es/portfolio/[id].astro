@@ -65,6 +65,10 @@ const portfolio = await getProject(id, locale)
 			<p>{portfolio.fields.summary}</p>
 			<!-- <section set:html={documentToHtmlString(portfolio.fields.summary)}></section> -->
 				<!-- children={portfolio.fields.summary} -->
+				 <!-- <Debug {portfolio.fields.summaryPicture} /> -->
+			<picture>
+				<img src={portfolio.fields.summaryPicture.fields.file.url} alt="">
+			</picture>
 			<!-- {!loading ? (
 				<Gallery
 					photos={[
@@ -78,6 +82,9 @@ const portfolio = await getProject(id, locale)
 			<h2 class="animate-titles">
 				{ia.fields.heading}
 			</h2>
+			<picture>
+				<img src={portfolio.fields.iaPicture.fields.file.url} alt="">
+			</picture>
 			<!-- {!loading ? (
 				<Gallery
 					photos={[
@@ -106,6 +113,18 @@ const portfolio = await getProject(id, locale)
 						}
 					)}
 			</div>
+			<!-- {!loading ? (
+				<Gallery
+					photos={portfolio.galleryCollection.items.map(
+						(photo: PhotoInterface) => {
+							return {
+								...photo,
+							};
+						}
+					)}
+					onClick={openLightbox}
+				/>
+			) : null} -->
 		</section>
 		<footer>
 			<section class="section section_left">

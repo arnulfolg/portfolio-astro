@@ -1,0 +1,40 @@
+---
+import '../../styles/widgets/Portfolio.css'
+
+import PortfolioCard from "../../components/cards/PortfolioCard.astro";
+import Base from "../../layouts/Base.astro";
+import { getContentHeader, getPortfolio } from "../../scripts/getContent";
+import { getLocaleAndLang } from "../../scripts/getLocaleAndLang";
+import ResumeWidget from '../../components/widgets/ResumeWidget.astro';
+
+const { pathname } = Astro.url
+
+const [, locale] = getLocaleAndLang(pathname)
+
+const portfolio = await getContentHeader('4KfXOh5UAb8vCN9YiQvaI7', locale)
+const entries = await getPortfolio(locale)
+
+---
+
+<Base>
+	<header>
+		<h1>{portfolio.fields.heading}</h1>
+	</header>
+	<section class="section section_left">
+		<section class="section_cols-2">
+			{entries.items.map(
+				(project) => {
+					return (
+						<PortfolioCard
+							link={project.sys.id}
+							image={project.fields.tumbnail.fields.file.url}
+							project={project.fields.project_name}
+						/>
+					);
+				}
+			)}
+		</section>
+	</section>
+
+	<ResumeWidget />
+</Base>

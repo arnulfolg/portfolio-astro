@@ -1,19 +1,6 @@
-import type { EntryFieldTypes } from 'contentful';
-
 export interface ContentfulPortfolioCollection {
 	contentTypeId: 'portfolio';
-	sys: {
-		id: EntryFieldTypes.Text;
-	};
 	fields: {
-		project_name: EntryFieldTypes.Text;
-		tumbnail: {
-			fields: {
-				file: {
-					url: EntryFieldTypes.Text;
-				};
-			};
-		};
 	};
 }
 

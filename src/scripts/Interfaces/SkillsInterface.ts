@@ -1,10 +1,6 @@
-import type { EntryFieldTypes } from 'contentful';
-
 export interface CVSkillsCollection {
 	contentTypeId: 'skills';
 	fields: {
-		title: EntryFieldTypes.Text;
-		skillList: Array<EntryFieldTypes.Text>;
 	};
 }
 

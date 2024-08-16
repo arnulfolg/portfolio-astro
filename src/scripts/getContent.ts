@@ -1,4 +1,3 @@
-import type { EntryFieldTypes } from 'contentful';
 import { contentfulClient } from '../lib/contentful';
 import type {
 	ContentfulAboutCollection,

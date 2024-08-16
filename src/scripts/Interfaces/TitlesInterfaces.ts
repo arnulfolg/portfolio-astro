@@ -1,10 +1,6 @@
-import type { EntryFieldTypes } from 'contentful';
-
 export interface ContentfulTitles {
 	contentTypeId: 'cvTitle';
 	fields: {
-		title: EntryFieldTypes.Text;
-		tagline: EntryFieldTypes.Text;
 	};
 }
 

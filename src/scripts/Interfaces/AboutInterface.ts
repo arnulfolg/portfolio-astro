@@ -1,10 +1,6 @@
-import type { EntryFieldTypes } from 'contentful';
-
 export interface ContentfulAboutCollection {
 	contentTypeId: 'aboutMe';
 	fields: {
-		title: EntryFieldTypes.Text;
-		description: EntryFieldTypes.Text;
 	};
 }
 

@@ -53,6 +53,18 @@
             gap-2;
 }
 
+.project_gallery {
+	@apply lg:columns-4
+			md:columns-3
+			sm:columns-1;
+}
+
+.project_gallery img {
+	@apply w-full
+			rounded
+			mb-4;
+}
+
 .summary {
 	@apply grid
             grid-cols-1

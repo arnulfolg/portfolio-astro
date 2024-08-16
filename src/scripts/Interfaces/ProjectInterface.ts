@@ -1,11 +1,6 @@
-import type { EntryFieldTypes } from "contentful";
-
 export interface ContentfulProject {
 	contentTypeId: 'portfolio';
 	fields: {
-		description: EntryFieldTypes.RichText;
-		summary: EntryFieldTypes.RichText;
-		takeaway: EntryFieldTypes.RichText
 	};
 }
 
@@ -46,7 +41,7 @@ export interface Fields {
   summaryPicture: GalleryEntityOrTumbnailOrSummaryPictureOrIaPicture;
   description: string;
   iaPicture: GalleryEntityOrTumbnailOrSummaryPictureOrIaPicture;
-  gallery?: (GalleryEntityOrTumbnailOrSummaryPictureOrIaPicture)[] | null;
+  gallery: (GalleryEntityOrTumbnailOrSummaryPictureOrIaPicture)[];
   takeaway: string;
 }
 export interface GalleryEntityOrTumbnailOrSummaryPictureOrIaPicture {

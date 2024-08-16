@@ -1,20 +1,6 @@
-import type { EntryFieldTypes } from 'contentful';
-
 export interface ContentfulEducationCollection {
 	contentTypeId: 'education';
-	sys: {
-		id: EntryFieldTypes.Text;
-	};
 	fields: {
-		title: EntryFieldTypes.Text;
-		subtitle: EntryFieldTypes.Text;
-		image: {
-			fields: {
-				file: {
-					url: EntryFieldTypes.Text;
-				};
-			};
-		};
 	};
 }
 

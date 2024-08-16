@@ -1,9 +1,6 @@
-import type { EntryFieldTypes } from 'contentful';
-
 export interface ContentfulHeaders {
 	contentTypeId: 'headings';
 	fields: {
-		heading: EntryFieldTypes.Text;
 	};
 }
 
