@@ -11,7 +11,7 @@ const [, locale] = getLocaleAndLang(pathname)
 const portfolio = await getContentHeader('4KfXOh5UAb8vCN9YiQvaI7', locale)
 const portfolioLink = await getContentHeader('4672gexNeDtvV2QiQYGBQT', locale)
 
-const entries = await getPortfolio(locale)
+const entries = await getPortfolio(locale, 2)
 
 ---
 <section class="section">
@@ -25,7 +25,6 @@ const entries = await getPortfolio(locale)
 					link={project.sys.id}
 					image={project.fields.tumbnail.fields.file.url}
 					project={project.fields.project_name}
-
 				/>
 			);
 		})}

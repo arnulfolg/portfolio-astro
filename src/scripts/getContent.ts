@@ -24,6 +24,7 @@ import type {
 } from './Interfaces/SkillsInterface';
 import type { ContentfulTitles, CVTitles } from './Interfaces/TitlesInterfaces';
 import type { ContentfulDegreeCollection, CVDegree } from './Interfaces/DegreeInterface';
+import type { ContentfulProject, CVProject } from './Interfaces/ProjectInterface';
 
 export const getContentHeader = async (id: string, locale: string) => {
 	const contentfulEntry = await contentfulClient.getEntry<ContentfulHeaders>(
@@ -71,12 +72,12 @@ export const getEducation = async (locale: string) => {
 	return entries as unknown as CVEducation;
 };
 
-export const getPortfolio = async (locale: string) => {
+export const getPortfolio = async (locale: string, limit: number = 12) => {
 	const entries =
 		await contentfulClient.getEntries<ContentfulPortfolioCollection>({
 			content_type: 'portfolio',
 			locale,
-			limit: 3,
+			limit
 		});
 
 	return entries as unknown as CVPortfolio;
@@ -110,4 +111,15 @@ export const getDegrees = async (locale: string) => {
 		});
 
 	return entries as unknown as CVDegree;
+};
+
+export const getProject = async (id: string, locale: string) => {
+	const contentfulProject = await contentfulClient.getEntry<ContentfulProject>(
+		id,
+		{
+			locale,
+		}
+	);
+
+	return contentfulProject as unknown as CVProject;
 };

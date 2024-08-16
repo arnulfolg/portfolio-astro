@@ -1,0 +1,137 @@
+---
+import Base from "../../../layouts/Base.astro";
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import { getContentHeader, getProject } from "../../../scripts/getContent";
+import { getLocaleAndLang } from "../../../scripts/getLocaleAndLang";
+import ResumeWidget from "../../../components/widgets/ResumeWidget.astro";
+
+export function getStaticPaths() {
+  return [
+    {params: {id: '2KhyjZV2kGp537iv05vpPP'}},
+    {params: {id: '58JyoXerZROBN4if4v2bTH'}},
+    {params: {id: '7MXRFQLx5NFxzOlliKy0v5'}},
+    {params: {id: '2xBOG7qZuhuW0sR0sii0Ni'}},
+    {params: {id: '2E3eeeVjUuMgauPR5LSOCk'}},
+    {params: {id: '52xwObMIDzNQYwALgjqcY3'}},
+    {params: {id: 'Qwpt3QuYTI1QGJEuRbeYZ'}},
+  ];
+}
+const {id} = Astro.params
+const { pathname } = Astro.url
+
+const [, locale] = getLocaleAndLang(pathname)
+
+const summary = await getContentHeader("4gobIU7yJwntG0shciWa86", locale)
+const client = await getContentHeader("2tBpCLYICvhVtHmzoiKznc", locale)
+const role = await getContentHeader("4Ypv2e1l5f7bJaryApIaSN", locale)
+const ia = await getContentHeader("4HYfNTYg82pPI2UKRzrBzC", locale)
+const gallery = await getContentHeader("4Q9KJGEyR4nSO8Ykbaddyu", locale)
+const time = await getContentHeader("2rAQXMfN9S7oyvjWudhBdn", locale)
+const techStack = await getContentHeader("wW5czNJAbbfqncgYxjycT", locale)
+const description = await getContentHeader("12SZ4gwxrJQDNffQJ5r2wC", locale)
+const takeaway = await getContentHeader("WAteUbv19cosqF7OJLMCK", locale)
+
+const portfolio = await getProject(id, locale)
+---
+<Base>
+	<article>
+		<header class="">
+			<h1>{portfolio.fields.project_name}</h1>
+			<section class="section summary">
+				<section class="summary_info summary_info__left">
+					<p class="summary_title">
+						{client.fields.heading}
+					</p>
+					<p>{portfolio.fields.client}</p>
+				</section>
+				<section class="summary_info">
+					<p class="summary_title">
+						{role.fields.heading}
+					</p>
+					<p>{portfolio.fields.role}</p>
+				</section>
+				<section class="summary_info summary_info__right">
+					<p class="summary_title">
+						{time.fields.heading}
+					</p>
+					<p>{portfolio.fields.time}</p>
+				</section>
+			</section>
+		</header>
+		<section class="section section_left">
+			<h2 class="animate-titles">
+				{summary.fields.heading}
+			</h2>
+			<p>{portfolio.fields.summary}</p>
+			<!-- <section set:html={documentToHtmlString(portfolio.fields.summary)}></section> -->
+				<!-- children={portfolio.fields.summary} -->
+			<!-- {!loading ? (
+				<Gallery
+					photos={[
+						{ ...portfolio.summaryPicture },
+					]}
+					onClick={openLightbox}
+				/>
+			) : null} -->
+		</section>
+		<section class="section section_left">
+			<h2 class="animate-titles">
+				{ia.fields.heading}
+			</h2>
+			<!-- {!loading ? (
+				<Gallery
+					photos={[
+						{ ...portfolio.iaPicture },
+					]}
+					onClick={openLightbox}
+				/>
+			) : null} -->
+		</section>
+		<section class="section section_left">
+			<h2 class="animate-titles">
+				{description.fields.heading}
+			</h2>
+			<p>{portfolio.fields.description}</p>
+			<!-- <section set:html={documentToHtmlString(portfolio.fields.description)}></section> -->
+
+		</section>
+		<section class="section section_left">
+			<h2 class="animate-titles">
+				{gallery.fields.heading}
+			</h2>
+			<!-- {!loading ? (
+				<Gallery
+					photos={portfolio.galleryCollection.items.map(
+						(photo: PhotoInterface) => {
+							return {
+								...photo,
+							};
+						}
+					)}
+					onClick={openLightbox}
+				/>
+			) : null} -->
+		</section>
+		<footer>
+			<section class="section section_left">
+				<h2 class="animate-titles">
+					{takeaway.fields.heading}
+				</h2>
+				<p>
+					{portfolio.fields.takeaway}
+				</p>
+				<!-- <section set:html={documentToHtmlString(portfolio.fields.takeaway)}></section> -->
+			</section>
+		</footer>
+
+		<!-- {isLightboxOpen ? (
+			<Lightbox
+				open={isLightboxOpen}
+				close={closeLightbox}
+				image={currentImage}
+			/>
+		) : null} -->
+	</article>
+
+	<ResumeWidget />
+</Base>
