@@ -19,7 +19,7 @@ export function getStaticPaths() {
 const {id} = Astro.params
 const { pathname } = Astro.url
 
-const [, locale] = getLocaleAndLang(pathname)
+const [language, locale] = getLocaleAndLang(pathname)
 
 const summary = await getContentHeader("4gobIU7yJwntG0shciWa86", locale)
 const client = await getContentHeader("2tBpCLYICvhVtHmzoiKznc", locale)
@@ -33,7 +33,7 @@ const takeaway = await getContentHeader("WAteUbv19cosqF7OJLMCK", locale)
 
 const portfolio = await getProject(id, locale)
 ---
-<Base>
+<Base lang={language}>
 	<article>
 		<header class="">
 			<h1>{portfolio.fields.project_name}</h1>

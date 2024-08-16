@@ -8,7 +8,7 @@ import EducationCard from '../../components/cards/EducationCard.astro';
 const { pathname } = Astro.url
 
 
-const [, locale] = getLocaleAndLang(pathname)
+const [language, locale] = getLocaleAndLang(pathname)
 
 const pageTitle: CVHeading = await getContentHeader('BJft3IxP7iqujQ53J1aYl', locale)
 const education: CVHeading = await getContentHeader('5Xlj25BEabB30fdd42rYts', locale)
@@ -18,7 +18,7 @@ const degrees = await getDegrees(locale)
 const certifications = await getCertificationCollection(locale)
 		
 ---
-<Base>
+<Base lang={language}>
 	<header>
 		<h1>{pageTitle.fields.heading}</h1>
 	</header>

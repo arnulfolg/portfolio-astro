@@ -5,11 +5,15 @@ import PortfolioWidget from "../../components/widgets/PortfolioWidget.astro";
 import ResumeWidget from "../../components/widgets/ResumeWidget.astro";
 import SkillsWidget from "../../components/widgets/SkillsWidget.astro";
 import Base from "../../layouts/Base.astro";
+import { getLocaleAndLang } from "../../scripts/getLocaleAndLang";
 // const { lang } = Astro.params
+
+const { pathname } = Astro.url
+const [language, ] = getLocaleAndLang(pathname)
 
 ---
 
-<Base>
+<Base lang={language}>
 	<AboutWidget />
 	<SkillsWidget />
 	<PortfolioWidget />

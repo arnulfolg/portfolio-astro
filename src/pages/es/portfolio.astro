@@ -9,14 +9,14 @@ import ResumeWidget from '../../components/widgets/ResumeWidget.astro';
 
 const { pathname } = Astro.url
 
-const [, locale] = getLocaleAndLang(pathname)
+const [language, locale] = getLocaleAndLang(pathname)
 
 const portfolio = await getContentHeader('4KfXOh5UAb8vCN9YiQvaI7', locale)
 const entries = await getPortfolio(locale)
 
 ---
 
-<Base>
+<Base lang={language}>
 	<header>
 		<h1>{portfolio.fields.heading}</h1>
 	</header>
