@@ -1,7 +1,6 @@
 export interface ContentfulHeaders {
 	contentTypeId: 'headings';
-	fields: {
-	};
+	fields: {};
 }
 
 export interface CVHeading {

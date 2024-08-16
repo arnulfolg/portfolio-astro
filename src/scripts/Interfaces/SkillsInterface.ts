@@ -1,7 +1,6 @@
 export interface CVSkillsCollection {
 	contentTypeId: 'skills';
-	fields: {
-	};
+	fields: {};
 }
 
 export interface CVSkills {

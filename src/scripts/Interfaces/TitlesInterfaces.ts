@@ -1,7 +1,6 @@
 export interface ContentfulTitles {
 	contentTypeId: 'cvTitle';
-	fields: {
-	};
+	fields: {};
 }
 
 export interface CVTitles {

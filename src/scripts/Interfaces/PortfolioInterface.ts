@@ -1,7 +1,6 @@
 export interface ContentfulPortfolioCollection {
 	contentTypeId: 'portfolio';
-	fields: {
-	};
+	fields: {};
 }
 
 export interface CVPortfolio {

@@ -1,7 +1,6 @@
 export interface ContentfulEducationCollection {
 	contentTypeId: 'education';
-	fields: {
-	};
+	fields: {};
 }
 
 export interface CVEducation {

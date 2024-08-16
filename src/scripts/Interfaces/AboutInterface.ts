@@ -1,7 +1,6 @@
 export interface ContentfulAboutCollection {
 	contentTypeId: 'aboutMe';
-	fields: {
-	};
+	fields: {};
 }
 
 export interface CVAbout {

@@ -5,6 +5,6 @@ import tailwind from '@astrojs/tailwind';
 // https://astro.build/config
 export default defineConfig({
 	integrations: [tailwind()],
-	defaultLocale: "en",
-	locales: ["es", "en"],
+	defaultLocale: 'en',
+	locales: ['es', 'en'],
 });
