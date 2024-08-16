@@ -19,7 +19,6 @@ dialog form {
 	}
 }
 
-
 dialog::backdrop {
 	@apply bg-black
 			opacity-75;
