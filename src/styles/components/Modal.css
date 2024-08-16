@@ -1,0 +1,26 @@
+dialog {
+	@apply rounded
+			p-2;
+
+	figcaption {
+		@apply text-center;
+	}
+}
+
+dialog form {
+	@apply text-right;
+
+	button {
+		@apply p-1;
+
+		:hover {
+			@apply text-yellow-800;
+		}
+	}
+}
+
+
+dialog::backdrop {
+	@apply bg-black
+			opacity-75;
+}

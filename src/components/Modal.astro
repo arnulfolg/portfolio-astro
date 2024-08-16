@@ -1,0 +1,14 @@
+---
+import './../styles/components/Modal.css'
+const { id, title } = Astro.props
+---
+
+<dialog id={id}>
+	<form method="dialog">
+		<button><i class="fa-regular fa-circle-xmark"></i></button>
+	</form>
+	<picture>
+		<slot name="main" />
+		<figcaption>{title}</figcaption>
+	</picture>
+</dialog>

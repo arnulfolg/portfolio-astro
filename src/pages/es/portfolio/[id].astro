@@ -5,6 +5,7 @@ import '../../../styles/widgets/Portfolio.css'
 import { getContentHeader, getProject } from "../../../scripts/getContent";
 import { getLocaleAndLang } from "../../../scripts/getLocaleAndLang";
 import ResumeWidget from "../../../components/widgets/ResumeWidget.astro";
+import Modal from "../../../components/Modal.astro";
 
 export function getStaticPaths() {
   return [
@@ -64,8 +65,14 @@ const portfolio = await getProject(id, locale)
 			</h2>
 			<p>{portfolio.fields.summary}</p>
 			<picture>
-				<img src={portfolio.fields.summaryPicture.fields.file.url} alt="">
+				<button onclick={`window.${portfolio.fields.summaryPicture.fields.file.fileName.split('.')[0]}.showModal()`}>
+					<img src={portfolio.fields.summaryPicture.fields.file.url} alt="" />
+				</button>
 			</picture>
+			<Modal id={portfolio.fields.summaryPicture.fields.file.fileName.split('.')[0]}
+					title={portfolio.fields.summaryPicture.fields.file.fileName.split('.')[0]}>
+				<img slot="main" src={portfolio.fields.summaryPicture.fields.file.url} alt="">
+			</Modal>
 		</section>
 		<section class="section section_left">
 			<h2 class="animate-titles">
@@ -74,6 +81,15 @@ const portfolio = await getProject(id, locale)
 			<picture>
 				<img src={portfolio.fields.iaPicture.fields.file.url} alt="">
 			</picture>
+			<picture>
+				<button onclick={`window.${portfolio.fields.iaPicture.fields.file.fileName.split('.')[0]}.showModal()`}>
+					<img src={portfolio.fields.iaPicture.fields.file.url} alt="" />
+				</button>
+			</picture>
+			<Modal id={portfolio.fields.iaPicture.fields.file.fileName.split('.')[0]}
+					title={portfolio.fields.iaPicture.fields.file.fileName.split('.')[0]}>
+				<img slot="main" src={portfolio.fields.iaPicture.fields.file.url} alt="">
+			</Modal>
 		</section>
 		<section class="section section_left">
 			<h2 class="animate-titles">
@@ -89,7 +105,16 @@ const portfolio = await getProject(id, locale)
 			<div class="project_gallery">
 				{portfolio.fields.gallery.map(
 						(photo) => {
-							return <img src={photo.fields.file.url} alt="">
+							return (
+								<button onclick={`window.Modal_${photo.fields.file.fileName.trim().split('.')[0].replace(/\s/g, "").replace(/\-/g, "")}.showModal()`}>
+									<img src={photo.fields.file.url} alt="">
+								</button>
+
+								<Modal id={`Modal_${photo.fields.file.fileName.trim().split('.')[0].replace(/\s/g, "").replace(/\-/g, "")}`}
+										title={photo.fields.file.fileName.split('.')[0]}>
+									<img slot="main" src={photo.fields.file.url} alt="" />
+								</Modal>
+								)
 						}
 					)}
 			</div>
