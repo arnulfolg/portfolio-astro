@@ -63,20 +63,9 @@ const portfolio = await getProject(id, locale)
 				{summary.fields.heading}
 			</h2>
 			<p>{portfolio.fields.summary}</p>
-			<!-- <section set:html={documentToHtmlString(portfolio.fields.summary)}></section> -->
-				<!-- children={portfolio.fields.summary} -->
-				 <!-- <Debug {portfolio.fields.summaryPicture} /> -->
 			<picture>
 				<img src={portfolio.fields.summaryPicture.fields.file.url} alt="">
 			</picture>
-			<!-- {!loading ? (
-				<Gallery
-					photos={[
-						{ ...portfolio.summaryPicture },
-					]}
-					onClick={openLightbox}
-				/>
-			) : null} -->
 		</section>
 		<section class="section section_left">
 			<h2 class="animate-titles">
@@ -85,21 +74,12 @@ const portfolio = await getProject(id, locale)
 			<picture>
 				<img src={portfolio.fields.iaPicture.fields.file.url} alt="">
 			</picture>
-			<!-- {!loading ? (
-				<Gallery
-					photos={[
-						{ ...portfolio.iaPicture },
-					]}
-					onClick={openLightbox}
-				/>
-			) : null} -->
 		</section>
 		<section class="section section_left">
 			<h2 class="animate-titles">
 				{description.fields.heading}
 			</h2>
 			<p>{portfolio.fields.description}</p>
-			<!-- <section set:html={documentToHtmlString(portfolio.fields.description)}></section> -->
 
 		</section>
 		<section class="section section_left">
@@ -113,18 +93,6 @@ const portfolio = await getProject(id, locale)
 						}
 					)}
 			</div>
-			<!-- {!loading ? (
-				<Gallery
-					photos={portfolio.galleryCollection.items.map(
-						(photo: PhotoInterface) => {
-							return {
-								...photo,
-							};
-						}
-					)}
-					onClick={openLightbox}
-				/>
-			) : null} -->
 		</section>
 		<footer>
 			<section class="section section_left">
@@ -138,13 +106,6 @@ const portfolio = await getProject(id, locale)
 			</section>
 		</footer>
 
-		<!-- {isLightboxOpen ? (
-			<Lightbox
-				open={isLightboxOpen}
-				close={closeLightbox}
-				image={currentImage}
-			/>
-		) : null} -->
 	</article>
 
 	<ResumeWidget />

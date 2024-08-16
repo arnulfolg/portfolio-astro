@@ -29,7 +29,7 @@ const entries: CVTitles = await getContentTitles(locale)
 				<DarkModeButton />
 			</li> -->
 			<li>
-				<LocaleButton language={language === "en" ? "es" : "en"} text={languageText.fields.heading} />
+				<LocaleButton language={language === "en" ? "es" : "en"} text={languageText.fields.heading} pathname={pathname} />
 			</li>
 		</ul>
 	))}

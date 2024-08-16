@@ -63,36 +63,23 @@ const portfolio = await getProject(id, locale)
 				{summary.fields.heading}
 			</h2>
 			<p>{portfolio.fields.summary}</p>
-			<!-- <section set:html={documentToHtmlString(portfolio.fields.summary)}></section> -->
-				<!-- children={portfolio.fields.summary} -->
-			<!-- {!loading ? (
-				<Gallery
-					photos={[
-						{ ...portfolio.summaryPicture },
-					]}
-					onClick={openLightbox}
-				/>
-			) : null} -->
+			<picture>
+				<img src={portfolio.fields.summaryPicture.fields.file.url} alt="">
+			</picture>
 		</section>
 		<section class="section section_left">
 			<h2 class="animate-titles">
 				{ia.fields.heading}
 			</h2>
-			<!-- {!loading ? (
-				<Gallery
-					photos={[
-						{ ...portfolio.iaPicture },
-					]}
-					onClick={openLightbox}
-				/>
-			) : null} -->
+			<picture>
+				<img src={portfolio.fields.iaPicture.fields.file.url} alt="">
+			</picture>
 		</section>
 		<section class="section section_left">
 			<h2 class="animate-titles">
 				{description.fields.heading}
 			</h2>
 			<p>{portfolio.fields.description}</p>
-			<!-- <section set:html={documentToHtmlString(portfolio.fields.description)}></section> -->
 
 		</section>
 		<section class="section section_left">
@@ -119,13 +106,6 @@ const portfolio = await getProject(id, locale)
 			</section>
 		</footer>
 
-		<!-- {isLightboxOpen ? (
-			<Lightbox
-				open={isLightboxOpen}
-				close={closeLightbox}
-				image={currentImage}
-			/>
-		) : null} -->
 	</article>
 
 	<ResumeWidget />

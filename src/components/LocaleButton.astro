@@ -1,5 +1,5 @@
 ---
-const { language, text } = Astro.props;
+const { language, text, pathname } = Astro.props;
 ---
 
 <button id="languageButton" class="toggleButton dark:outline-white">
@@ -7,11 +7,11 @@ const { language, text } = Astro.props;
 	<span>{text}</span>
 </button>
 
-<script is:inline define:vars={{language}}>
+<script is:inline define:vars={{language, pathname}}>
 	const button = document.querySelector('button#languageButton');
 
 	button?.addEventListener('click', () => {
-		const changelanguage = `/${language}/`
+		const changelanguage = `/${language}/${pathname.slice(4)}`
 		location.href = changelanguage
 	});
 </script>
