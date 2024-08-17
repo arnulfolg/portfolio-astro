@@ -5,6 +5,7 @@ import { getContentHeader, getContentTitles } from '../scripts/getContent';
 import type { CVHeading } from '../scripts/Interfaces/HeaderInterfaces';
 import type { CVTitles } from '../scripts/Interfaces/TitlesInterfaces';
 import { getLocaleAndLang } from '../scripts/getLocaleAndLang';
+import { isPathRoot } from '../scripts/isPathRoot';
 
 const { pathname } = Astro.url
 
@@ -14,14 +15,15 @@ const languageText: CVHeading = await getContentHeader('ryPXmqgWyGKZKVNpevKXS', 
 
 const entries: CVTitles = await getContentTitles(locale)
 
+
 ---
 
-<header class="header">
+<header class={isPathRoot(pathname) ? "header" : "header header_compact"}>
 	{entries.items.map((item) => (
 		<section class="titles">
-			<!-- <Link to="/"> -->
+			<a href="/">
 				<h1>{item.fields.title}</h1>
-			<!-- </Link> -->
+			</a>
 			<p class="subtitle">{item.fields.tagline}</p>
 		</section>
 		<ul class="controls">
