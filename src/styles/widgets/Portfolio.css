@@ -88,68 +88,68 @@
 	@apply font-bold;
 }
 
-.react-photo-gallery--gallery img:hover {
+.project_gallery img:hover {
 	@apply outline-black;
 }
 
-.dark .react-photo-gallery--gallery img:hover {
+.dark .project_gallery img:hover {
 	@apply outline-white;
 }
 
-.react-photo-gallery--gallery img:nth-child(1) {
+.project_gallery img:nth-child(1) {
 	transform: translateX(2.5rem) translateY(0.3rem);
 }
-.react-photo-gallery--gallery img:nth-child(2) {
+.project_gallery img:nth-child(2) {
 	transform: translateX(2.5rem) translateY(0.6rem);
 }
-.react-photo-gallery--gallery img:nth-child(3) {
+.project_gallery img:nth-child(3) {
 	transform: translateX(2.5rem) translateY(0.9rem);
 }
-.react-photo-gallery--gallery img:nth-child(4) {
+.project_gallery img:nth-child(4) {
 	transform: translateX(2.5rem) translateY(1.2rem);
 }
-.react-photo-gallery--gallery img:nth-child(5) {
+.project_gallery img:nth-child(5) {
 	transform: translateX(2.5rem) translateY(1.5rem);
 }
-.react-photo-gallery--gallery img:nth-child(6) {
+.project_gallery img:nth-child(6) {
 	transform: translateX(2.5rem) translateY(1.8rem);
 }
-.react-photo-gallery--gallery img:nth-child(7) {
+.project_gallery img:nth-child(7) {
 	transform: translateX(2.5rem) translateY(2.1rem);
 }
-.react-photo-gallery--gallery img:nth-child(8) {
+.project_gallery img:nth-child(8) {
 	transform: translateX(2.5rem) translateY(2.4rem);
 }
-.react-photo-gallery--gallery img:nth-child(9) {
+.project_gallery img:nth-child(9) {
 	transform: translateX(2.5rem) translateY(2.7rem);
 }
-.react-photo-gallery--gallery img:nth-child(10) {
+.project_gallery img:nth-child(10) {
 	transform: translateX(2.5rem) translateY(3rem);
 }
-.react-photo-gallery--gallery img:nth-child(11) {
+.project_gallery img:nth-child(11) {
 	transform: translateX(2.5rem) translateY(3.3rem);
 }
-.react-photo-gallery--gallery img:nth-child(12) {
+.project_gallery img:nth-child(12) {
 	transform: translateX(2.5rem) translateY(3.6rem);
 }
-.react-photo-gallery--gallery img:nth-child(13) {
+.project_gallery img:nth-child(13) {
 	transform: translateX(2.5rem) translateY(3.9rem);
 }
-.react-photo-gallery--gallery img:nth-child(14) {
+.project_gallery img:nth-child(14) {
 	transform: translateX(2.5rem) translateY(4.2rem);
 }
-.react-photo-gallery--gallery img:nth-child(15) {
+.project_gallery img:nth-child(15) {
 	transform: translateX(2.5rem) translateY(4.5rem);
 }
 
-.react-photo-gallery--gallery img {
+.project_gallery img {
 	animation: image-effect linear forwards;
 	animation-timeline: view(block);
 	animation-range: entry-crossing entry;
 }
 
 @media (prefers-reduced-motion) {
-	.section .react-photo-gallery--gallery img {
+	.section .project_gallery img {
 		animation: unset;
 		transform: none;
 	}
