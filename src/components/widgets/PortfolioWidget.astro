@@ -22,7 +22,7 @@ const entries = await getPortfolio(locale, 2)
 		{entries.items.map((project) => {
 			return (
 				<PortfolioCard
-					link={project.sys.id}
+					link={`portfolio/${project.sys.id}`}
 					image={project.fields.tumbnail.fields.file.url}
 					project={project.fields.project_name}
 				/>

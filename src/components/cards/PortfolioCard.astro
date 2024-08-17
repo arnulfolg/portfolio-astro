@@ -2,7 +2,7 @@
 const { link, image, project } = Astro.props 
 ---
 
-<a class="portfolio_card" href={`portfolio/${link}`}>
+<a class="portfolio_card" href={link}>
 	<img class="img" src={image} alt="" loading="lazy" />
 	<p class="title">{project}</p>
 </a>
