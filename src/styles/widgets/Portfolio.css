@@ -43,7 +43,8 @@
 
 .portfolio_card .title {
 	@apply py-3
-            text-xl;
+            text-xl
+			dark:text-white;
 }
 
 .gallery {
