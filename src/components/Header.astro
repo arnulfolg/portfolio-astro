@@ -1,6 +1,7 @@
 ---
 import './../styles/components/Header.css'
-import LocaleButton from "./LocaleButton.astro";
+import LocaleButton from "./buttons/LocaleButton.astro";
+import ThemeButton from "./buttons/ThemeButton.astro";
 import { getContentHeader, getContentTitles } from '../scripts/getContent';
 import type { CVHeading } from '../scripts/Interfaces/HeaderInterfaces';
 import type { CVTitles } from '../scripts/Interfaces/TitlesInterfaces';
@@ -12,6 +13,10 @@ const { pathname } = Astro.url
 const [language, locale] = getLocaleAndLang(pathname)
 
 const languageText: CVHeading = await getContentHeader('ryPXmqgWyGKZKVNpevKXS', locale)
+const darkThemeText: CVHeading = await getContentHeader('rTtf5I7pfOcYV5iYDdpUR', locale)
+const lightThemeText: CVHeading = await getContentHeader('79Dm3OEJSUvlbDonKZs8RN', locale)
+const titleThemeText: CVHeading = await getContentHeader('6dlytuU9sR8iSeGLTvkV0t', locale)
+const systemText: CVHeading = await getContentHeader('46KujCrjVBmOk934heQA2', locale)
 
 const entries: CVTitles = await getContentTitles(locale)
 
@@ -27,9 +32,13 @@ const entries: CVTitles = await getContentTitles(locale)
 			<p class="subtitle">{item.fields.tagline}</p>
 		</section>
 		<ul class="controls">
-			<!-- <li>
-				<DarkModeButton />
-			</li> -->
+			<li>
+				<ThemeButton 
+					title={titleThemeText.fields.heading}
+					system={systemText.fields.heading}
+					dark={darkThemeText.fields.heading} 
+					light={lightThemeText.fields.heading} />
+			</li>
 			<li>
 				<LocaleButton language={language === "en" ? "es" : "en"} text={languageText.fields.heading} pathname={pathname} />
 			</li>

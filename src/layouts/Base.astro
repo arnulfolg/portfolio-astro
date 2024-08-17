@@ -56,19 +56,20 @@ const { lang } = Astro.props
       Learn how to configure a non-root public URL by running `npm run build`.
     -->		
 
-		<title>Arnulfo Loredo</title>
+	<title>Arnulfo Loredo</title>
 
-		<script is:inline src="https://kit.fontawesome.com/bd9abda6a7.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
 		<section class="App">
 			<Header />
-
+			
 			<main class="main">
 				<slot />
 			</main>
 			
 			<Footer />
 		</section>
+		<script is:inline src="https://kit.fontawesome.com/bd9abda6a7.js" crossorigin="anonymous"></script>
+		<script is:inline src="../../../src/scripts/darkMode.ts" crossorigin="anonymous"></script>
 	</body>
 </html>

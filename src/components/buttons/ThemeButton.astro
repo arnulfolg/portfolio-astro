@@ -1,0 +1,35 @@
+---
+import './../../styles/components/Popover.css'
+const { title, system, dark, light } = Astro.props;
+---
+
+<div class="relative">
+
+	<button
+		id="toggleTheme"
+		class="toggleButton dark:outline-white"
+		popovertarget="popover_theme"
+	>
+		<i id="theme_icon" class="fa-solid"></i>
+		<span>{title}</span>
+	</button>
+
+	<div id="popover_theme" popover class="popover" anchor="toggleTheme" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+		<div class="popover_content" role="none">
+			<button id="toggleLight" class="toggleButton" popovertargetaction="hide" role="menuitem" tabindex="-1" id="menu-item-0">
+				<i class="fa-solid fa-sun"></i>
+				{light}
+			</button>
+			<button id="toggleDark" class="toggleButton" popovertargetaction="hide" role="menuitem" tabindex="-1" id="menu-item-1">
+				<i class="fa-solid fa-moon"></i>
+				{dark}
+			</button>
+			<button id="toggleSystem" class="toggleButton" popovertargetaction="hide" role="menuitem" tabindex="-1" id="menu-item-2">
+				<i class="fa-solid fa-desktop"></i>
+				{system}
+			</button>
+		</div>
+	</div>
+</div>
+
+<script is:inline src="../../../scripts/darkMode.ts"></script>

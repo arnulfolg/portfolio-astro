@@ -1,0 +1,24 @@
+.popover {
+	top: anchor(bottom);
+  	left: anchor(center);
+	translate: -50% 0;
+
+	@apply mt-2
+		text-black
+		dark:text-white
+		origin-top-right 
+		rounded-md 
+		bg-white 
+		dark:bg-black
+		shadow-lg 
+		ring-1 
+		ring-black 
+		dark:ring-white
+		ring-opacity-5 
+		focus:outline-none;
+
+	.popover_content {
+		@apply flex	
+				flex-col;
+	}
+}
