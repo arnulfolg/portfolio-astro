@@ -1,6 +1,6 @@
 .popover {
 	top: anchor(bottom);
-  	left: anchor(center);
+	left: anchor(center);
 	translate: -50% 0;
 
 	@apply mt-2
@@ -20,5 +20,13 @@
 	.popover_content {
 		@apply flex	
 				flex-col;
+	}
+}
+
+@supports not (top: anchor(bottom)) {
+	.popover {
+		@apply fixed
+			mr-4
+			mt-16;
 	}
 }
