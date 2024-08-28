@@ -1,5 +1,6 @@
 /// <reference types="vitest" />
 import { getViteConfig } from 'astro/config';
+import { configDefaults } from 'vitest/config';
 
 export default getViteConfig({
 	test: {
@@ -7,6 +8,10 @@ export default getViteConfig({
 		globals: true,
 		coverage: {
 			provider: 'v8',
+			exclude: [
+				'**/**.config.*',
+				'**/**.d.ts'
+			]
 		},
 	},
 });
